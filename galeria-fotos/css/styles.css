@@ -1,0 +1,347 @@
+/* TODO: Implementa un reset básico */
+* {
+  /* Remueve márgenes y padding predeterminados */
+  margin: 0;
+  padding: 0;
+  /* Configura box-sizing: border-box */
+  box-sizing: border-box;
+}
+
+/* TODO: Configura el html */
+html {
+  /* font-size debe ser 100% para accesibilidad */
+  font-size:100%;
+}
+
+/* TODO: Estilos base del body */
+body {
+  /* font-family con fuentes del sistema */
+  font-family: 'Courier New', Courier, monospace;
+  /* font-size en rem */
+  font-size: 1rem;
+  /* line-height apropiado */
+  line-height: 1.6;
+  /* color de texto */
+  color: #232629;
+  /* background-color */
+  background-color: #f7fafc;
+}
+
+/* ==========================================================================
+   2. VARIABLES CSS (PALETA DINÁMICA HSL)
+   ========================================================================== */
+/* TODO: Define variables usando HSL */
+:root {
+  
+  /*extra1*/
+  /* Variables para el Dark Mode */
+  --bg-dark: hsl(220, 15%, 10%);      /* Fondo casi negro */
+  --card-dark: hsl(220, 15%, 15%);    /* Tarjetas un pelín más claras que el fondo */
+  --text-dark: hsl(220, 10%, 90%);    /* Texto casi blanco */
+  
+  /* Color primario base usando HSL */
+
+
+  --h-primario: 220;
+  --s-primario: 80%;
+
+
+  /* extra mio */
+  --color-tarjeta: hsl(184, 31%, 54%);
+  --footer: hsl(0, 0%, 5%);
+
+  /* Los 3 niveles de Brillo (Lightness) que necesitamos */
+  --l-base: 50%;    /* El color estándar */
+  --l-claro: 85%;   /* Para fondos suaves o hovers */
+  --l-oscuro: 25%;  /* Para textos o bordes fuertes */
+
+  /* Ejemplo: --color-primario: hsl(220, 80%, 50%); */
+  
+  /* Variación clara del color primario */
+  --color-primario-claro:  hsl(var(--h-primario), var(--s-primario), var(--l-claro));
+  /* Usa el mismo Hue pero incrementa Lightness */
+  
+  /* Variación oscura del color primario */
+  --color-primario-oscuro: hsl(var(--h-primario), var(--s-primario), var(--l-oscuro));
+  /* Usa el mismo Hue pero reduce Lightness */
+  
+  /* Colores de texto y fondo */
+  /* Neutros para el cuerpo de la página */
+  --color-fondo: hsl(210, 20%, 98%);     /* Casi blanco */
+  --color-texto: hsl(210, 10%, 20%);      /* Gris oscuro profesional */
+  
+  /* Espaciado */
+  /* Espaciado estándar (Layout) */
+  --espacio-sm: 0.5rem;  /* 8px aprox */
+  --espacio-md: 1.5rem;  /* 24px aprox */
+  --espacio-lg: 3rem;    /* 48px aprox */
+}
+
+/* * INVESTIGACIÓN: ¿Qué es HSL y por qué usarlo?
+ * * 1. ¿Qué significa cada valor en hsl()?
+ * - H (Hue / Tono): Representa el color en un círculo cromático de 0 a 360°. 
+ * (0 es rojo, 120 es verde, 240 es azul). Es "qué color" eliges.
+
+ * - S (Saturation / Saturación): La intensidad o pureza del color (0% es gris, 100% color vivo). 
+ * Es "qué tan fuerte" es el pigmento.
+
+ * - L (Lightness / Luminosidad): La cantidad de blanco o negro (0% es negro total, 100% blanco total). 
+ * Es "qué tanto brillo" tiene.
+ 
+ * * 2. ¿Por qué HSL puede ser más útil que HEX o RGB?
+ * - Es más fácil entender "subir el brillo 10%" en HSL 
+ * que adivinar qué letras cambiar en un código HEX (#3b82f6).
+ * - Facilita crear paletas coherentes: Puedes mantener el mismo Tono (H) y Saturación (S) 
+ * y solo variar la Luminosidad (L) para crear sombras y luces que combinen perfecto.
+
+ * * 3. Ejemplo práctico: ¿Cuándo usarías HSL en un proyecto real?
+ * - Para crear un "Efecto Hover" en un botón: Si tengo un botón azul, puedo hacer que 
+ * al pasar el mouse se oscurezca automáticamente bajando un 10% el valor de Lightness (L).
+ */
+
+
+ /* TODO: Estiliza el header usando Flexbox */
+.header {
+  /* background-color usando variable */
+  background-color: var(--color-primario-oscuro);
+  color: var(--white);
+  /* padding usando rem */
+  padding: 2rem var(--espacio-md);
+  /* box-shadow sutil */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  
+}
+
+.header-contenido {
+  /* max-width para limitar ancho */
+  max-width: 1200px;
+  /* margin: 0 auto para centrar */
+  margin: 0% auto;
+  /* padding usando rem */
+
+  padding: 2rem var(--espacio-md);
+  /* text-align: center */
+  text-align: center;
+}
+
+.titulo-principal {
+  /* font-size usando rem (2.5rem - 3rem) */
+  font-size: 3rem;
+  /* margin-bottom usando rem */
+  margin-bottom: var(--espacio-md);
+  /* color usando variable HSL */
+  color: var(--color-primario-claro);
+
+  /* Un toque de peso visual */
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.descripcion {
+  /* font-size usando rem */
+  font-size: 1.5rem;
+  /* color más claro para contraste */
+  color: hsla(0, 0%, 100%, 0.8);
+
+  /* Vieja confiable para una mejor calidad visual */
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* TODO: Implementa Grid para la galería */
+.contenedor {
+  /* max-width usando rem */
+  max-width: 75rem;     /* son aproximadamente 1200px */
+  /* margin: 0 auto */
+  margin: 0 auto;
+  /* padding usando rem */
+  padding: 0 var(--espacio-md);
+}
+
+.galeria {
+  /* display: grid */
+  display: grid;
+  /* grid-template-columns: 3 columnas iguales con repeat() */
+  grid-template-columns: repeat(3, 1fr);
+  /* gap entre tarjetas */
+  gap: var(--espacio-md);
+
+  /* extra, separa la margen del header */
+  margin-top: var(--espacio-lg);
+}
+
+
+/* EXTRA DE MOVIMIENTO AL RECARGAR PAGINA*/
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.foto-tarjeta {
+  /* Aplicamos la animación: dura 0.6 segundos */
+  animation: aparecer 0.6s ease-out forwards;
+}
+
+
+
+/* TODO: Estiliza las tarjetas */
+.foto-tarjeta {
+  /* background-color */
+  background-color: var(--color-tarjeta,#fff);
+  /* border-radius */
+  border-radius: 8px ;
+  /* box-shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  
+  /* IMPORTANTE: Corta la imagen para que respete el radio del borde */
+  overflow: hidden;
+  /* overflow: hidden para esquinas redondeadas de imagen */
+  
+  /* transition para hover */
+  transition: transform 0.s ease, box-shadow 0.3 ease;
+}
+
+.galeria .foto-tarjeta:first-child {
+  /* La primera tarjeta ocupa 2 columnas de ancho */
+  grid-column: span 2;
+  /* Opcional: la hacemos un poco más alta */
+  min-height: 400px; 
+}
+
+.foto-tarjeta img {
+  /* width: 100% */
+  width: 100%;
+  /* height: 250px */
+  height: 250px;
+  /* object-fit: cover */
+  object-fit: cover;
+  /* display: block */
+  display: block;
+}
+
+.foto-info {
+  /* padding usando rem */
+  padding: var(--espacio-md);
+}
+
+.foto-titulo {
+  /* font-size usando rem */
+  font-size: 1.25rem;
+  /* margin-bottom */
+  margin-bottom: var(--espacio-sm);
+  /* color usando variable */
+  color: var(--color-primario-claro);
+
+  /* extra grosor del titulo*/
+  font-weight: 700;
+
+  text-align: center;
+}
+
+.foto-descripcion {
+  /* font-size usando rem */
+  font-size: 0.95rem;
+  /* color más claro */
+  color: black;
+  /* margin: 0 */
+  margin: 0%;
+
+  /*extra*/
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* TODO: Efecto hover */
+.foto-tarjeta:hover {
+  /* transform: translateY(-4px) */
+  transform: translateY(-4px);
+  /* box-shadow más pronunciada */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+
+  /*extra*/
+  cursor: pointer;
+}
+
+/* TODO: Estiliza el footer */
+.footer {
+  /* background-color usando variable oscura */
+  background-color: var(--color-primario-oscuro);
+  /* color claro */
+  color: var(--color-primario-claro);
+  /* text-align: center */
+  text-align: center;
+  /* padding usando rem */
+  padding: var(--espacio-sm);
+  /* margin-top usando rem */
+  margin-top: var(--espacio-lg);
+
+  /*extra */
+  border-top: 3px solid var(--color-primario);
+}
+
+/* TODO: Tablets - 2 columnas */
+@media (max-width: 768px) {
+  .galeria {
+    /* grid-template-columns: 2 columnas */
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espacio-md);
+  }
+  
+  .titulo-principal {
+    /* font-size más pequeño */
+    font-size: 2.2rem;
+  }
+}
+
+/* SUPER EXTRA/*
+/* --- ESTE VA DESPUÉS DEL DE 768px Y ANTES DEL DE 480px --- */
+
+@media (max-width: 600px) {
+  .galeria {
+    /* Mantenemos 2 columnas, pero ajustamos el diseño */
+    grid-template-columns: repeat(2, 1fr);
+    
+    /* Reducimos el espacio para que las fotos se vean más grandes */
+    gap: 0.75rem; 
+  }
+
+  .titulo-principal {
+    /* Un tamaño intermedio para que no se vea ni gigante ni diminuto */
+    font-size: 2rem;
+  }
+
+  .foto-titulo {
+    /* Hacemos la letra un pelín más pequeña para que quepa el texto en 2 columnas */
+    font-size: 1.1rem;
+  }
+}
+
+/* TODO: Móviles - 1 columna */
+@media (max-width: 480px) {
+  .galeria {
+    /* grid-template-columns: 1 columna */
+    grid-template-columns: 1fr;
+    gap: var(--espacio-sm);
+  }
+  
+  .titulo-principal {
+    /* font-size aún más pequeño */
+    font-size: 1.8rem;
+  }
+  
+  .contenedor {
+    /* padding reducido */
+    padding: 0 var(--espacio-sm);
+  }
+
+  /*extra*/
+
+  .header {
+    padding: var(--espacio-lg) var(--espacio-sm);
+  }
+}
